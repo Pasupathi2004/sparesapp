@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000/api/items"; // adjust if hosted elsewhere
+const API_BASE = "https://spares-1.onrender.com"; // adjust if hosted elsewhere
 
 function login() {
   const username = document.getElementById("username").value;
