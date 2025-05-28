@@ -1,19 +1,25 @@
 /* General Styles */
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background: #f0f2f5;
+  background: #F0F2F5;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #2e8b57;
+  background: #2E8B57;
   color: white;
   padding: 16px;
   font-size: 20px;
+}
+
+header > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .hamburger {
@@ -27,10 +33,11 @@ header {
 .side-menu {
   position: fixed;
   top: 0;
+  right: -260px;
+  width: 250px;
   height: 100%;
-  background: #1f2937;
+  background: #1F2937;
   color: white;
-  width: 30%;
   padding: 20px;
   transition: right 0.3s;
   display: flex;
@@ -43,7 +50,7 @@ header {
 }
 
 .side-menu button {
-  background: #2e8b57;
+  background: #2E8B57;
   border: none;
   margin: 10px 0;
   padding: 12px;
@@ -55,6 +62,18 @@ header {
 
 .side-menu button:hover {
   background: #246b44;
+}
+
+/* Logout button specific styling in side menu */
+.side-menu button[onclick="logout()"] {
+  background: #dc3545;
+  margin-top: 20px;
+  border-top: 1px solid #495057;
+  padding-top: 15px;
+}
+
+.side-menu button[onclick="logout()"]:hover {
+  background: #c82333;
 }
 
 #overlay {
@@ -72,8 +91,7 @@ header {
   padding: 20px;
 }
 
-input,
-button {
+input, button, select {
   width: 100%;
   padding: 12px;
   margin-top: 10px;
@@ -83,14 +101,14 @@ button {
   border: 1px solid #ccc;
 }
 
-input:focus {
+input:focus, select:focus {
   outline: none;
-  border: 1px solid #2e8b57;
+  border: 1px solid #2E8B57;
   background-color: #e8f5f0;
 }
 
 button {
-  background: #2e8b57;
+  background: #2E8B57;
   color: white;
   border: none;
   font-weight: bold;
@@ -122,8 +140,7 @@ button:hover {
   background: #f0f0f0;
 }
 
-.result,
-.message {
+.result, .message {
   background: #ffffff;
   padding: 12px;
   margin-top: 10px;
@@ -144,6 +161,97 @@ button:hover {
   background: #c9302c;
 }
 
+/* Login page specific styles */
+#loginPage .section {
+  max-width: 400px;
+  margin: 50px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+#loginPage h2 {
+  text-align: center;
+  color: #2E8B57;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+#loginPage h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+/* Login type buttons */
+#loginPage button:not(.back-button) {
+  background: linear-gradient(135deg, #2E8B57, #3CB371);
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  margin: 8px 0;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(46, 139, 87, 0.3);
+}
+
+#loginPage button:not(.back-button):hover {
+  background: linear-gradient(135deg, #246b44, #2E8B57);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(46, 139, 87, 0.4);
+}
+
+/* Admin login form container */
+#adminLoginForm {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+}
+
+/* Input styling for login */
+#loginPage input {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 12px 15px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+#loginPage input:focus {
+  border-color: #2E8B57;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.1);
+}
+
+/* Message styling */
+#loginMessage {
+  text-align: center;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* Back button specific styling */
+#loginPage .back-button {
+  background: #6c757d;
+  margin-top: 10px;
+}
+
+#loginPage .back-button:hover {
+  background: #5a6268;
+  transform: none;
+  box-shadow: none;
+}
+
 #sparesList table {
   width: 100%;
   border-collapse: collapse;
@@ -151,45 +259,16 @@ button:hover {
   background-color: white;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 
-#sparesList th,
-#sparesList td {
+#sparesList th, #sparesList td {
   padding: 10px;
   border: 1px solid #e0e0e0;
-  text-align: left;
 }
 
-#sparesList th {
-  background-color: #2e8b57;
+/* Highlight row fully in red if balance quantity less than 5 */
+.low-quantity {
+  background-color: #d9534f; /* bootstrap danger red */
   color: white;
-}
-
-#sparesList tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-/* Mobile Styling */
-@media (max-width: 600px) {
-  .side-menu {
-    width: 200px;
-  }
-
-  header {
-    font-size: 16px;
-  }
-
-  .hamburger {
-    font-size: 22px;
-  }
-
-  input,
-  button {
-    font-size: 14px;
-  }
-
-  .section {
-    padding: 15px;
-  }
 }
